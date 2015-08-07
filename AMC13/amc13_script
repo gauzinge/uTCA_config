@@ -1,0 +1,60 @@
+#TTCci configuration
+
+fv
+rg
+
+#reset counters
+#this is the generic AMC13 counter reset
+rc
+start
+#this resetes EC and OC 
+writeT1 ACTION.LOCAL_TRIG.SEND_ECR 1
+writeT1 ACTION.LOCAL_TRIG.SEND_OCR 1
+
+#BGO Channle 1 (BC0) is sent once per default in every Orbit
+#BGO channel 15: pixel = calibration Trigger
+writeT1 CONF.TTC.BGO0.COMMAND 0xf
+writeT1 CONF.TTC.BGO0.LONG_CMD 0
+writeT1 CONF.TTC.BGO0.ENABLE 1
+writeT1 CONF.TTC.BGO0.ORBIT_PRESCALE 0
+writeT1 CONF.TTC.BGO0.BX 100
+
+#cyclic trigger every 100 BX, all standard CMS trigger rules
+writeT1 CONF.LOCAL_TRIG.TYPE 1
+writeT1 CONF.LOCAL_TRIG.RATE 100
+writeT1 CONF.LOCAL_TRIG.RULES 0
+
+#not sur if this is necessary
+#writeT1 ACTION.LOCAL_TRIG.CONTINUOUS 
+
+#enable continuous local L1A & BGOs
+writeT1 CONF.TTC.ENABLE_BGO 1
+writeT1 CONF.TTC.ENABLE_INTERNAL_L1A 1
+
+#enable TTC on AMC Slots:
+writeT1 CONF.AMC01.ENABLE_MASK 1
+writeT1 CONF.AMC02.ENABLE_MASK 0
+writeT1 CONF.AMC03.ENABLE_MASK 1
+writeT1 CONF.AMC04.ENABLE_MASK 0
+writeT1 CONF.AMC05.ENABLE_MASK 0
+writeT1 CONF.AMC06.ENABLE_MASK 0
+writeT1 CONF.AMC07.ENABLE_MASK 0
+writeT1 CONF.AMC08.ENABLE_MASK 0
+writeT1 CONF.AMC09.ENABLE_MASK 0
+writeT1 CONF.AMC10.ENABLE_MASK 1
+writeT1 CONF.AMC11.ENABLE_MASK 0
+writeT1 CONF.AMC12.ENABLE_MASK 0
+
+#put the AMC13 in TTC simulator mode
+writeT1 CONF.DIAG.FAKE_TTC_ENABLE 1
+writeT1 CONF.TTC.ENABLE_INTERNAL_L1A 1
+
+#everything ready, lets read some registers back
+sleep 5
+readT1 CONF.TTC.BGO0.COMMAND
+lt c
+#start
+
+ttc h on 
+sleep 5
+ttc h d 100

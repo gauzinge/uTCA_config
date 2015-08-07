@@ -1,0 +1,4 @@
+#Defaults for dhcp initscript
+#sourced by /etc/init.d/dhcp
+
+INTERFACES="eth1"

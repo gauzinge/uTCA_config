@@ -1,0 +1,15 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+# uTCA infrastructure
+192.168.0.157 amc13T1
+192.168.0.156 amc13T2
+192.168.0.177 mch
+
+#AMCs
+192.168.0.164 ctatkfec
+192.168.0.170 glibtkfec
+
+
+# FEROL kit
+10.0.0.4 ferol

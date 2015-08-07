@@ -1,0 +1,11 @@
+# see man ethers for syntax
+#
+#
+#AMC13 for uTCA Pixel DAQ
+08:00:30:F3:01:4E	amc13T1
+08:00:30:F3:01:0E	amc13T2
+
+
+#CTAs for uTCA Pixel DAQ
+#00:0a:35:01:ea:f3	ctatkfec
+aa:bb:cc:dd:ee:50 ctatkfec

@@ -1,0 +1,32 @@
+writeT1 CONF.ID.FED_ID 0
+#general & counter reset just for safety
+rg
+rc
+echo 'counters reset'
+
+#DAQ link enable
+daq 1
+rd
+echo 'DAQ link 1 enabled'
+
+#run mode and fake data mode for all AMCs
+i 1-2 F N
+echo 'Enabling fake data from all AMCs'
+
+#start taking data
+start
+
+#configurqtion local trigger
+localL1A o 1 1
+
+#send triggers
+lt 5
+
+#check if the events were buit
+st
+
+#readout events
+re
+
+
+
